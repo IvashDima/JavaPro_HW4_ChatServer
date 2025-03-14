@@ -1,6 +1,7 @@
 package academy.prog.models;
 
 import academy.prog.JsonUsers;
+import academy.prog.enums.StatusType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -25,9 +26,13 @@ public class UserList {
     public synchronized void add(User user) {
         list.add(user);
     }
+    public synchronized void getUserList() {
 
-    public synchronized String toJSON(int n) {
-        if (n < 0 || n >= list.size()) return null;
-        return gson.toJson(new JsonUsers(list, n));
+//        list.add(user);
+    }
+
+    public synchronized String toJSON(StatusType status) {
+        if (list.size() == 0) return null;
+        return gson.toJson(new JsonUsers(list, status));
     }
 }

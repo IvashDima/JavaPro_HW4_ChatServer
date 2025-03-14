@@ -11,9 +11,9 @@ public class User {
 
     private StatusType status;
 
-    public User(String name, String password){
+    public User(String login, StatusType status){
         this.login = login;
-        this.password = password;
+        this.status = status;
     }
 
     public String toJSON() {
@@ -29,6 +29,13 @@ public class User {
         Gson gson = new GsonBuilder().create();
         return gson.fromJson(s, User.class);
     }
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public StatusType getStatus() {
         return status;
@@ -41,7 +48,7 @@ public class User {
     @Override
     public String toString() {
         return new StringBuilder().append("[").append(login)
-                .append(", ").append(password)
+//                .append(", ").append(password)
                 .append(", ").append(status)
                 .append("] ")
                 .toString();
