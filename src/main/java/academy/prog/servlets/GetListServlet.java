@@ -3,9 +3,11 @@ package academy.prog.servlets;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import academy.prog.enums.StatusType;
 import academy.prog.models.MessageList;
+import academy.prog.models.User;
 import academy.prog.models.UserList;
 import jakarta.servlet.http.*;
 
@@ -38,11 +40,12 @@ public class GetListServlet extends HttpServlet {
 		json += usrList.toJSON(StatusType.active);
 
 		String login = req.getParameter("login");
-//		for (int i = 0; i < usrList.get; i++){
-//			if (sourceList.get(i).getStatus() == status){
-//				list.add(sourceList.get(i));
-//			}
-//		}
+		List<User> list = usrList.getUserList();
+		for (int i = 0; i < list.size(); i++){
+			if (list.get(i).getLogin() == login){
+				list.get(i).setStatus(StatusType.active);
+			}
+		}
 
 
 

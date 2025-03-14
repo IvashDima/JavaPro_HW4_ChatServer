@@ -26,9 +26,8 @@ public class UserList {
     public synchronized void add(User user) {
         list.add(user);
     }
-    public synchronized void getUserList() {
-
-//        list.add(user);
+    public synchronized List<User> getUserList() {
+        return list;
     }
 
     public synchronized String toJSON(StatusType status) {
