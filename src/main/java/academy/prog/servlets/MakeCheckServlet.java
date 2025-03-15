@@ -3,6 +3,7 @@ package academy.prog.servlets;
 import academy.prog.enums.DefaultPassword;
 import academy.prog.enums.StatusType;
 import academy.prog.models.User;
+import academy.prog.models.UserList;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -11,20 +12,23 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class MakeCheckServlet extends HttpServlet {
-
+    private UserList usrList = UserList.getInstance();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         byte[] buf = requestBodyToArray(req); // json
         String bufStr = new String(buf, StandardCharsets.UTF_8);
 
         User usr = User.fromJSON(bufStr);
-
-        if (DefaultPassword.fromString(usr.getPassword()) == null)
-            resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
-
-        usr.setStatus(StatusType.active);
+        if(usr != null){
+            if (!Objects.equals(DefaultPassword.fromString(usr.getPassword()), null)) {
+                usr.setStatus(StatusType.active);
+                usrList.add(usr);
+                System.out.println("User " + usr + "set to active status.");
+            }else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+        }else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
     }
     private byte[] requestBodyToArray(HttpServletRequest req) throws IOException { // Apache commons-io
         InputStream is = req.getInputStream();
