@@ -2,6 +2,8 @@ package academy.prog.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
+
 import academy.prog.models.MessageList;
 import jakarta.servlet.http.*;
 
@@ -31,7 +33,6 @@ public class GetListServlet extends HttpServlet {
 				return;
 			}
 			resp.setContentType("application/json");
-
 //			List<Message> messages = msgList.getMessages(from);
 //			List<User> activeUsers = usrList.getActiveUsers(StatusType.active);
 //
@@ -49,22 +50,10 @@ public class GetListServlet extends HttpServlet {
 
 //			String jsonResponse = "{}";
 			String jsonMessages = msgList.toJSON(from);
-//			if (!Objects.isNull(jsonMessages) && !jsonMessages.isEmpty()) {
-//				jsonMessages = jsonMessages;
-//			}
-//			String jsonUsers = usrList.toJSON(StatusType.active);
-//			if (!Objects.isNull(jsonUsers) && !jsonUsers.isEmpty()) {
-//				jsonResponse = jsonResponse.isEmpty() ? jsonUsers : jsonMessages + jsonUsers;
-//			}
-//
-//			String login = req.getParameter("login");
-//			if(login != null){
-//				usrList.setUserActive(login);
-//				lastRequestTime.put(login, System.currentTimeMillis());
-//			}
-
-			try (PrintWriter out = resp.getWriter()) {
-				out.write(jsonMessages);
+			if (!Objects.isNull(jsonMessages) && !jsonMessages.isEmpty()) {
+				try (PrintWriter out = resp.getWriter()) {
+					out.write(jsonMessages);
+				}
 			}
 
 		} catch (Exception ex) {

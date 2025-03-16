@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 public class GetStatusServlet extends HttpServlet {
     //	private static final long inactiveTime = 30_000;
@@ -50,11 +51,11 @@ public class GetStatusServlet extends HttpServlet {
             resp.setContentType("application/json");
 
             String jsonUsers = usrList.toJSON(StatusType.active);
-
-            try (PrintWriter out = resp.getWriter()) {
-                out.write(jsonUsers);
-            }
-
+			if (!Objects.isNull(jsonUsers) && !jsonUsers.isEmpty()) {
+                try (PrintWriter out = resp.getWriter()) {
+                    out.write(jsonUsers);
+                }
+			}
         } catch (Exception ex) {
             ex.printStackTrace();
             resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
