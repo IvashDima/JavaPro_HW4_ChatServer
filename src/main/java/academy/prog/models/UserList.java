@@ -26,19 +26,12 @@ public class UserList {
     public synchronized void add(User user) {
         list.add(user);
     }
-//    public synchronized List<User> getUserList() {
-//        return list;
-//    }
 
     public synchronized String toJSON(StatusType status) {
         if (list.size() == 0) return null;
         return gson.toJson(new JsonUsers(list, status));
     }
-//    public synchronized List<User> getActiveUsers(StatusType status) {
-//        return list.stream()
-//                .filter(user -> user.getStatus() == status)
-//                .toList();
-//    }
+
     public synchronized void setUserActive(String login) {
         for (User user : list) {
             if (user.getLogin().equals(login)) {

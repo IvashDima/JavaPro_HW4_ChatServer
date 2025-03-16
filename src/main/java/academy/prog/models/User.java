@@ -16,11 +16,6 @@ public class User {
         this.status = status;
     }
 
-    public String toJSON() {
-        Gson gson = new GsonBuilder().create();
-        return gson.toJson(this);
-    }
-
     public String getPassword() {
     return password;
 }
@@ -48,14 +43,9 @@ public class User {
     @Override
     public String toString() {
         return new StringBuilder().append("[").append(login)
-//                .append(", ").append(password)
                 .append(", ").append(status)
                 .append("] ")
                 .toString();
-//                "{login='"+login+", " +
-//                "password='"+password+", " +
-//                "status='"+status+
-//                "'}";
     }
 }
 

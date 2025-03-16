@@ -30,7 +30,7 @@ public class MakeCheckServlet extends HttpServlet {
             }else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
         }else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
     }
-    private byte[] requestBodyToArray(HttpServletRequest req) throws IOException { // Apache commons-io
+    private byte[] requestBodyToArray(HttpServletRequest req) throws IOException {
         InputStream is = req.getInputStream();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] buf = new byte[10240];

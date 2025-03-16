@@ -8,11 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-/*
-    POST(json) -> /add -> AddServlet -> MessageList
-    GET -> /get?from=x -> GetListServlet <- MessageList
-        <- json[...]
- */
+
 public class AddServlet extends HttpServlet {
 	private MessageList msgList = MessageList.getInstance();
 	@Override
@@ -26,7 +22,7 @@ public class AddServlet extends HttpServlet {
 		else
 			resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 	}
-	private byte[] requestBodyToArray(HttpServletRequest req) throws IOException { // Apache commons-io
+	private byte[] requestBodyToArray(HttpServletRequest req) throws IOException {
         InputStream is = req.getInputStream();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] buf = new byte[10240];

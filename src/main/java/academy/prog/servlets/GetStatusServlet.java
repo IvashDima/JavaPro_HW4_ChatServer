@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class GetStatusServlet extends HttpServlet {
-    private static final long inactiveTime = 30000;
+    private static final long inactiveTime = 60000;
     private UserList usrList = UserList.getInstance();
 
 	private final Map<String, Long> lastRequestTime = new ConcurrentHashMap<>();
@@ -22,7 +22,7 @@ public class GetStatusServlet extends HttpServlet {
 		new Thread(() -> {
 			while (true) {
 				try {
-					Thread.sleep(30000);
+					Thread.sleep(10000);
 					checkInactiveUsers();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
