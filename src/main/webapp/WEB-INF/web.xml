@@ -42,7 +42,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 
 	<servlet>
 		<servlet-name>GetStatus</servlet-name>
-		<servlet-class>academy.prog.servlets.MakeCheckServlet</servlet-class>
+		<servlet-class>academy.prog.servlets.GetStatusServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetStatus</servlet-name>

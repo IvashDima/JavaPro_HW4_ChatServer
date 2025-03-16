@@ -26,7 +26,7 @@ public class MakeCheckServlet extends HttpServlet {
             if (!Objects.equals(DefaultPassword.fromString(usr.getPassword()), null)) {
                 usr.setStatus(StatusType.active);
                 usrList.add(usr);
-                System.out.println("User " + usr + "set to active status.");
+                System.out.println("User '" + usr.getLogin() + "' set to active status.");
             }else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
         }else resp.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
     }
