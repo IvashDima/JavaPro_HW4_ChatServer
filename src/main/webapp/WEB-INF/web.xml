@@ -10,7 +10,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetList</servlet-name>
-		<url-pattern>/get</url-pattern>
+		<url-pattern>/getmsg</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -19,7 +19,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Add</servlet-name>
-		<url-pattern>/add</url-pattern>
+		<url-pattern>/addmsg</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -28,26 +28,26 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>MakeCheck</servlet-name>
-		<url-pattern>/check</url-pattern>
+		<url-pattern>/checkusr</url-pattern>
 	</servlet-mapping>
 
-<!--	<servlet>-->
-<!--		<servlet-name>AddStatus</servlet-name>-->
-<!--		<servlet-class>academy.prog.servlets.AddStatusServlet</servlet-class>-->
-<!--	</servlet>-->
-<!--	<servlet-mapping>-->
-<!--		<servlet-name>AddStatus</servlet-name>-->
-<!--		<url-pattern>/addStatus</url-pattern>-->
-<!--	</servlet-mapping>-->
+	<servlet>
+		<servlet-name>AddStatus</servlet-name>
+		<servlet-class>academy.prog.servlets.AddStatusServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddStatus</servlet-name>
+		<url-pattern>/addstatus</url-pattern>
+	</servlet-mapping>
 
-<!--	<servlet>-->
-<!--		<servlet-name>GetStatus</servlet-name>-->
-<!--		<servlet-class>academy.prog.servlets.MakeCheckServlet</servlet-class>-->
-<!--	</servlet>-->
-<!--	<servlet-mapping>-->
-<!--		<servlet-name>GetStatus</servlet-name>-->
-<!--		<url-pattern>/getStatus</url-pattern>-->
-<!--	</servlet-mapping>-->
+	<servlet>
+		<servlet-name>GetStatus</servlet-name>
+		<servlet-class>academy.prog.servlets.MakeCheckServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetStatus</servlet-name>
+		<url-pattern>/getusr</url-pattern>
+	</servlet-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

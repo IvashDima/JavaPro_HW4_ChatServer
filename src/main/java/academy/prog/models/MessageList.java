@@ -3,7 +3,7 @@ package academy.prog.models;
 import java.util.LinkedList;
 import java.util.List;
 
-import academy.prog.JsonMessages;
+import academy.prog.jsons.JsonMessages;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

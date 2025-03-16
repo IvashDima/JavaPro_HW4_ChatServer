@@ -47,17 +47,15 @@ public class User {
 
     @Override
     public String toString() {
-        return
-                "{login='"+login+", " +
+        return new StringBuilder().append("[").append(login)
+//                .append(", ").append(password)
+                .append(", ").append(status)
+                .append("] ")
+                .toString();
+//                "{login='"+login+", " +
 //                "password='"+password+", " +
 //                "status='"+status+
-                "'}";
-
-//                new StringBuilder().append("[").append(login)
-////                .append(", ").append(password)
-//                .append(", ").append(status)
-//                .append("] ")
-//                .toString();
+//                "'}";
     }
 }
 

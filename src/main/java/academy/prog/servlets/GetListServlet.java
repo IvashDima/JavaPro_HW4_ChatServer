@@ -2,22 +2,7 @@ package academy.prog.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.OutputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
-
-import academy.prog.enums.StatusType;
-import academy.prog.models.Message;
 import academy.prog.models.MessageList;
-import academy.prog.models.User;
-import academy.prog.models.UserList;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import jakarta.servlet.http.*;
 
 /*
@@ -29,24 +14,9 @@ import jakarta.servlet.http.*;
 	....
  */
 public class GetListServlet extends HttpServlet {
-	private static final long inactiveTime = 30_000;
-	private MessageList msgList = MessageList.getInstance();
-//	private UserList usrList = UserList.getInstance();
-//	private final Gson gson = new Gson();
-//	private final Map<String, Long> lastRequestTime = new ConcurrentHashMap<>();
 
-//	public GetListServlet() {
-//		new Thread(() -> {
-//			while (true) {
-//				try {
-//					Thread.sleep(10_000); //
-//					checkInactiveUsers();
-//				} catch (InterruptedException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}).start();
-//	}
+	private MessageList msgList = MessageList.getInstance();
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		try {
@@ -103,16 +73,4 @@ public class GetListServlet extends HttpServlet {
 				resp.getWriter().write("Internal Server Error: " + ex.getMessage());
 			}
 	}
-//	private void checkInactiveUsers() {
-//		long currentTime = System.currentTimeMillis();
-//		for (Map.Entry<String, Long> entry : lastRequestTime.entrySet()) {
-//			String login = entry.getKey();
-//			long lastTime = entry.getValue();
-//			if (currentTime - lastTime > inactiveTime) {
-//				usrList.setUserInactive(login);
-//				lastRequestTime.remove(login);
-//				System.out.println("User " + login + " set to inactive status.");
-//			}
-//		}
-//	}
 }

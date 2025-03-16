@@ -1,6 +1,6 @@
 package academy.prog.models;
 
-import academy.prog.JsonUsers;
+import academy.prog.jsons.JsonUsers;
 import academy.prog.enums.StatusType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -34,11 +34,11 @@ public class UserList {
         if (list.size() == 0) return null;
         return gson.toJson(new JsonUsers(list, status));
     }
-    public synchronized List<User> getActiveUsers(StatusType status) {
-        return list.stream()
-                .filter(user -> user.getStatus() == status)
-                .toList();
-    }
+//    public synchronized List<User> getActiveUsers(StatusType status) {
+//        return list.stream()
+//                .filter(user -> user.getStatus() == status)
+//                .toList();
+//    }
     public synchronized void setUserActive(String login) {
         for (User user : list) {
             if (user.getLogin().equals(login)) {
