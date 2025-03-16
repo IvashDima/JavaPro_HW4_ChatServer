@@ -31,22 +31,22 @@ import jakarta.servlet.http.*;
 public class GetListServlet extends HttpServlet {
 	private static final long inactiveTime = 30_000;
 	private MessageList msgList = MessageList.getInstance();
-	private UserList usrList = UserList.getInstance();
-	private final Gson gson = new Gson();
-	private final Map<String, Long> lastRequestTime = new ConcurrentHashMap<>();
+//	private UserList usrList = UserList.getInstance();
+//	private final Gson gson = new Gson();
+//	private final Map<String, Long> lastRequestTime = new ConcurrentHashMap<>();
 
-	public GetListServlet() {
-		new Thread(() -> {
-			while (true) {
-				try {
-					Thread.sleep(10_000); //
-					checkInactiveUsers();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
+//	public GetListServlet() {
+//		new Thread(() -> {
+//			while (true) {
+//				try {
+//					Thread.sleep(10_000); //
+//					checkInactiveUsers();
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}).start();
+//	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		try {
@@ -62,39 +62,39 @@ public class GetListServlet extends HttpServlet {
 			}
 			resp.setContentType("application/json");
 
-			List<Message> messages = msgList.getMessages(from);
-			List<User> activeUsers = usrList.getActiveUsers(StatusType.active);
-
-			JsonObject jsonResponse = new JsonObject();
-			if (!messages.isEmpty()) {
-				JsonArray jsonMessages = gson.toJsonTree(messages).getAsJsonArray();
-				jsonResponse.add("messages", jsonMessages);
-				System.out.println(jsonMessages);
-			}
-			if (!activeUsers.isEmpty()) {
-				JsonArray jsonUsers = gson.toJsonTree(activeUsers).getAsJsonArray();
-				jsonResponse.add("users", jsonUsers);
-				System.out.println(jsonUsers);
-			}
+//			List<Message> messages = msgList.getMessages(from);
+//			List<User> activeUsers = usrList.getActiveUsers(StatusType.active);
+//
+//			JsonObject jsonResponse = new JsonObject();
+//			if (!messages.isEmpty()) {
+//				JsonArray jsonMessages = gson.toJsonTree(messages).getAsJsonArray();
+//				jsonResponse.add("messages", jsonMessages);
+//				System.out.println(jsonMessages);
+//			}
+//			if (!activeUsers.isEmpty()) {
+//				JsonArray jsonUsers = gson.toJsonTree(activeUsers).getAsJsonArray();
+//				jsonResponse.add("users", jsonUsers);
+//				System.out.println(jsonUsers);
+//			}
 
 //			String jsonResponse = "{}";
-//			String jsonMessages = msgList.toJSON(from);
+			String jsonMessages = msgList.toJSON(from);
 //			if (!Objects.isNull(jsonMessages) && !jsonMessages.isEmpty()) {
-//				jsonResponse = jsonMessages;
+//				jsonMessages = jsonMessages;
 //			}
 //			String jsonUsers = usrList.toJSON(StatusType.active);
 //			if (!Objects.isNull(jsonUsers) && !jsonUsers.isEmpty()) {
 //				jsonResponse = jsonResponse.isEmpty() ? jsonUsers : jsonMessages + jsonUsers;
 //			}
-
-			String login = req.getParameter("login");
-			if(login != null){
-				usrList.setUserActive(login);
-				lastRequestTime.put(login, System.currentTimeMillis());
-			}
+//
+//			String login = req.getParameter("login");
+//			if(login != null){
+//				usrList.setUserActive(login);
+//				lastRequestTime.put(login, System.currentTimeMillis());
+//			}
 
 			try (PrintWriter out = resp.getWriter()) {
-				out.write(gson.toJson(jsonResponse));
+				out.write(jsonMessages);
 			}
 
 		} catch (Exception ex) {
@@ -103,16 +103,16 @@ public class GetListServlet extends HttpServlet {
 				resp.getWriter().write("Internal Server Error: " + ex.getMessage());
 			}
 	}
-	private void checkInactiveUsers() {
-		long currentTime = System.currentTimeMillis();
-		for (Map.Entry<String, Long> entry : lastRequestTime.entrySet()) {
-			String login = entry.getKey();
-			long lastTime = entry.getValue();
-			if (currentTime - lastTime > inactiveTime) {
-				usrList.setUserInactive(login);
-				lastRequestTime.remove(login);
-				System.out.println("User " + login + " set to inactive status.");
-			}
-		}
-	}
+//	private void checkInactiveUsers() {
+//		long currentTime = System.currentTimeMillis();
+//		for (Map.Entry<String, Long> entry : lastRequestTime.entrySet()) {
+//			String login = entry.getKey();
+//			long lastTime = entry.getValue();
+//			if (currentTime - lastTime > inactiveTime) {
+//				usrList.setUserInactive(login);
+//				lastRequestTime.remove(login);
+//				System.out.println("User " + login + " set to inactive status.");
+//			}
+//		}
+//	}
 }
